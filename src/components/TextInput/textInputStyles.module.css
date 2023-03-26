@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.labelText{
+  font-size: 18px;
+  font-weight: bold;
+  color: #00B4D8;
+}
+
+.inputContainer{
+  border: 2px solid #00B4D8;
+  border-radius: 10px;
+  padding: 15px 20px;
+  caret-color: #00B4D8;
+  font-size: 24px;
+  color: #00B4D8;
+  
+}
+
+input::placeholder {
+  opacity: 0.5;
+  color: #00B4D8;
+}
+
+*:focus {
+  outline: none;
+}
+
+.errorLabel {
+  color: red;
+  font-size: 14pt;
+  font-weight: 300;
+}

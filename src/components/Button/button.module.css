@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  border: none;
+  padding: 15px;
+  font-size: 24px;
+  border-radius: 60px;
+  background-color: #00B4D8;
+  color: #FFFFFF;
+  overflow: hidden;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: #0077B6;
+  transition: 400ms;
+}
+
+.container:active {
+  background-color: #90e0ef;
+}
+
+.inverted {
+  background-color: #FFFFFF;
+  border: 3px solid #00B4D8;
+  color: #00B4D8;
+}
+
+.inverted:hover {
+  color: #FFFFFF;
+  border-color: #0077B6;
+}
+
+.inverted:active {
+  color: #FFFFFF;
+  border-color: #90e0ef;
+}
