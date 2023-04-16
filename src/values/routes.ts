@@ -2,4 +2,6 @@ const loginRoute = '/auth/login';
 
 const registerRoute = '/auth/register';
 
-export { loginRoute, registerRoute };
+const homeRoute = '/';
+
+export { loginRoute, registerRoute, homeRoute };
