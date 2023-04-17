@@ -18,6 +18,12 @@ import {
 } from './loginPage.settings';
 
 import styles from './loginPage.styles';
+import { useLoginMutation } from '../../../store/reducers/authApiSlice';
+import { CustomErrorResponse } from '../../../responses/responseError';
+import Snackbar from '../../../components/Snackbar/Snackbar';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../../../store/reducers/authSlice';
+import { AuthResponse } from '../../../responses/authResponse';
 
 const LoginPage = () => {
   const [email, onEmailChange] = useState('');
@@ -26,7 +32,13 @@ const LoginPage = () => {
   const [emailValidationError, setEmailValidationError] = useState<string | null>(null);
   const [passwordValidationError, setPasswordValidationError] = useState<string | null>(null);
 
+  const [loginError, setLoginError] = useState<string | null>(null);
+
   const navigate = useNavigate();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (emailValidationError !== null) {
@@ -51,10 +63,23 @@ const LoginPage = () => {
   };
 
   const handleSignIn = () => {
-    if (!validate()) {
-      return;
+    if (!validate()) return;
+    try {
+      login({ email, password })
+        .unwrap()
+        .catch((e: CustomErrorResponse) => {
+          console.log(e.data.error);
+          setLoginError(e.data.error);
+        })
+        .then((response) => {
+          console.log(response);
+          const token = (response as AuthResponse).accessToken;
+          dispatch(setCredentials({ token }));
+          navigate('/');
+        });
+    } catch (error) {
+      console.log(error);
     }
-    console.log(email, password);
   };
 
   const handleCreateAccount = () => {
@@ -62,6 +87,10 @@ const LoginPage = () => {
   };
 
   const handleContinueAsGuest = () => {};
+
+  const handleCloseErrorSnackbar = () => {
+    setLoginError(null);
+  };
 
   return (
     <div style={styles.container}>
@@ -74,12 +103,27 @@ const LoginPage = () => {
           onChange={onPasswordChange}
           errorText={passwordValidationError}
         />
+        {loginError != null ? (
+          <Snackbar text={loginError} onClose={handleCloseErrorSnackbar} />
+        ) : (
+          <></>
+        )}
         <Spacer height={spacing} />
-        <Button text={signInButtonText} onClick={handleSignIn} />
+        <Button text={signInButtonText} onClick={handleSignIn} disabled={isLoading} />
         <Spacer height={spacing} />
-        <Button text={createAccountButtonText} inverted onClick={handleCreateAccount} />
+        <Button
+          text={createAccountButtonText}
+          inverted
+          onClick={handleCreateAccount}
+          disabled={isLoading}
+        />
         <Spacer height={spacing} />
-        <Button text={continueAsGuestButtonText} inverted onClick={handleContinueAsGuest} />
+        <Button
+          text={continueAsGuestButtonText}
+          inverted
+          onClick={handleContinueAsGuest}
+          disabled={isLoading}
+        />
       </AuthForm>
     </div>
   );

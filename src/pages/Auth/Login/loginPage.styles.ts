@@ -4,4 +4,15 @@ const container: React.CSSProperties = {
   height: '100vh'
 };
 
-export default { container };
+const errorText: React.CSSProperties = {
+  color: 'red',
+  fontSize: 18
+};
+
+const loader: React.CSSProperties = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
+export default { container, errorText, loader };
