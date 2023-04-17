@@ -1,0 +1,31 @@
+.container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00B4D8;
+  width: 300px;
+  border-radius: 5px;
+  animation: appearing 200ms ease-in-out;
+}
+
+@keyframes appearing {
+  0% {
+    opacity: 0;
+    left: -20px;
+  }
+  100% {
+    opacity: 1;
+    left: 20px;
+  }
+}
+
+.content {
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

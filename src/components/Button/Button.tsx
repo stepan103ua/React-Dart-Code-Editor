@@ -6,12 +6,16 @@ interface Props {
   text: string;
   inverted?: boolean;
   onClick: () => void;
+  disabled?: boolean;
 }
 
-const Button = ({ text, inverted, onClick }: Props) => {
+const Button = ({ text, inverted, onClick, disabled = false }: Props) => {
   const isInverted = inverted ?? false;
   return (
-    <button className={`${classes.container} ${isInverted && classes.inverted}`} onClick={onClick}>
+    <button
+      className={`${classes.container} ${isInverted && classes.inverted}`}
+      onClick={onClick}
+      disabled={disabled}>
       {text}
     </button>
   );
