@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
-import CircularProgressIndicator from '../../../components/CircularProgressIndicator/CircularProgressIndicator';
 import Spacer from '../../../components/Spacer/Spacer';
 import TextInput from '../../../components/TextInput/TextInput';
 import { loginRoute } from '../../../values/routes';
@@ -24,13 +23,16 @@ import {
   usernameHint,
   welcomeSubtitle
 } from './registerPage.settings';
+import { useRegisterMutation } from '../../../store/reducers/authApiSlice';
+import { useDispatch } from 'react-redux';
+import { AuthResponse } from '../../../responses/authResponse';
+import { setCredentials } from '../../../store/reducers/authSlice';
 
 const RegisterPage = () => {
   const [username, onUsernameChange] = useState('');
   const [email, onEmailChange] = useState('');
   const [password, onPasswordChange] = useState('');
   const [confirmPassword, onConfirmPasswordChange] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const [usernameValidationError, setUsernameValidationError] = useState<string | null>(null);
   const [emailValidationError, setEmailValidationError] = useState<string | null>(null);
@@ -40,6 +42,10 @@ const RegisterPage = () => {
   >(null);
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const [register, { isLoading }] = useRegisterMutation();
 
   useEffect(() => {
     if (usernameValidationError !== null) {
@@ -85,8 +91,15 @@ const RegisterPage = () => {
     if (!validate()) {
       return;
     }
-    console.log(username, email, password, confirmPassword);
-    setLoading(true);
+    register({ username, email, password })
+      .unwrap()
+      .catch((e) => {})
+      .then((response) => {
+        console.log(response);
+        const token = (response as AuthResponse).accessToken;
+        dispatch(setCredentials({ token }));
+        navigate('/');
+      });
   };
 
   const handleBackToLogin = () => {
@@ -117,17 +130,16 @@ const RegisterPage = () => {
           errorText={confirmPasswordValidationError}
         />
         <Spacer height={spacing} />
-        {loading ? (
-          <div className={styles.loader}>
-            <CircularProgressIndicator />
-          </div>
-        ) : (
-          <div>
-            <Button text={signUpButtonText} onClick={handleOnSignUp} />
-            <Spacer height={spacing} />
-            <Button text={backToLoginButtonText} inverted onClick={handleBackToLogin} />
-          </div>
-        )}
+        <div>
+          <Button text={signUpButtonText} onClick={handleOnSignUp} disabled={isLoading} />
+          <Spacer height={spacing} />
+          <Button
+            text={backToLoginButtonText}
+            inverted
+            onClick={handleBackToLogin}
+            disabled={isLoading}
+          />
+        </div>
       </AuthForm>
     </div>
   );
