@@ -1,0 +1,33 @@
+.container {
+  width: 40%;
+  min-width: 500px;
+  height: 60%;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonContainer {
+  width: 30%;
+}
+
+.descriptionText {
+  font-size: 22pt;
+}

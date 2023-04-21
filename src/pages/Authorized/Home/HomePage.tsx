@@ -6,11 +6,14 @@ import { RoomContext } from '../../../context/RoomContext';
 import { Project } from '../../../models/project';
 import HomeProjectsList from './Components/HomeProjectsList/HomeProjectsList';
 import { Invite } from '../../../models/invite';
+import CreateProjectDialog from './Components/CreateProjectDialog/CreateProjectDialog';
 
 const HomePage = () => {
   const socket = useContext(RoomContext);
   const [projects, setProjects] = useState<Project[]>([]);
   const [invites, setInvites] = useState<Invite[]>([]);
+
+  const [isCreateProjectDialogOpen, setCreateProjectDialogOpen] = useState(false);
 
   useEffect(() => {
     socket?.emit('receive-projects');
@@ -40,20 +43,40 @@ const HomePage = () => {
     });
   }, []);
 
-  console.log(projects);
+  const handleCreateProject = (projectName: string) => {
+    console.log(projectName);
+    socket?.emit('create-project', projectName);
+    setCreateProjectDialogOpen(false);
+  };
 
-  const handleCreateProject = () => {
-    socket?.emit('create-project', 'test');
+  const handleOpenCreateProjectDialog = () => {
+    setCreateProjectDialogOpen(true);
+  };
+
+  const handleCloseCreateProjectDialog = () => {
+    setCreateProjectDialogOpen(false);
   };
 
   return (
-    <div className={styles.container}>
-      <NavBar />
-      <div className={styles.content}>
-        <HomeActionsBlock onCreateProjectClicked={handleCreateProject} invites={invites} />
-        <HomeProjectsList projects={projects} />
+    <>
+      <div className={styles.container}>
+        <NavBar />
+        <div className={styles.content}>
+          <HomeActionsBlock
+            onCreateProjectClicked={handleOpenCreateProjectDialog}
+            invites={invites}
+          />
+          <HomeProjectsList projects={projects} />
+        </div>
       </div>
-    </div>
+      {isCreateProjectDialogOpen && (
+        <CreateProjectDialog
+          isOpen={isCreateProjectDialogOpen}
+          onCancel={handleCloseCreateProjectDialog}
+          onCreate={handleCreateProject}
+        />
+      )}
+    </>
   );
 };
 
