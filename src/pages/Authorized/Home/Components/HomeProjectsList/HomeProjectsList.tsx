@@ -8,6 +8,9 @@ interface Props {
 }
 
 const HomeProjectsList: FC<Props> = ({ projects }) => {
+  if (projects.length === 0) {
+    return <div className={styles.container}>No projects found</div>;
+  }
   return (
     <div className={styles.container}>
       {projects.map((e) => (

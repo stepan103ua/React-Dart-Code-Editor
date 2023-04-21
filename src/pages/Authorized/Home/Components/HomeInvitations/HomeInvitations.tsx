@@ -1,30 +1,19 @@
-import React from 'react';
-import { Invitation } from '../../../../../types/invitation';
+import React, { FC } from 'react';
 import HomeInvitationItem from './HomeInvitationItem/HomeInvitationItem';
 import styles from './homeInvitations.module.css';
+import { Invite } from '../../../../../models/invite';
 
-const dummyInvitations: Invitation[] = [
-  {
-    id: '1',
-    projectName: 'Hello world!',
-    fromEmail: 'stepan8877ua@gmail.com',
-    fromUsername: 'Stepan Dobrianskyi'
-  },
-  {
-    id: '2',
-    projectName: 'Hello world!',
-    fromEmail: 'stepan8877ua@gmail.com',
-    fromUsername: 'Stepan'
-  }
-];
+interface Props {
+  invites: Invite[];
+}
 
-const HomeInvitations = () => {
+const HomeInvitations: FC<Props> = ({ invites }) => {
   return (
     <div className={styles.container}>
-      <span className={styles.title}>Invitation to projects</span>
+      {invites.length !== 0 && <span className={styles.title}>Invitation to projects</span>}
       <div className={styles.invitationsContainer}>
-        {dummyInvitations.map((e) => {
-          return <HomeInvitationItem key={e.id} invitation={e} />;
+        {invites.map((e) => {
+          return <HomeInvitationItem key={e.id} invite={e} />;
         })}
       </div>
     </div>
