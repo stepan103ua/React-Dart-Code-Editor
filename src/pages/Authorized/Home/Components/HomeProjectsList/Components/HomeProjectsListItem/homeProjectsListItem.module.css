@@ -1,0 +1,36 @@
+.container {
+  padding: 20px;
+  width: 250px;
+  height: 125px;
+  border: 2px solid #00B4D8;
+  border-radius: 10px;
+  margin: 20px;
+  overflow: hidden;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.membersList {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titleText {
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+.timeText {
+  font-size: 12pt;
+  color: #B5B5B5;
+}

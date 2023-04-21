@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.circleContainer {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.userInfo{
+  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.secondaryText {
+  font-size: 10pt;
+  color: #B5B5B5;
+  font-weight: 300;
+}
+
+.actionsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.joinButton {
+  border: none;
+  border-radius: 10px;
+  background-color: #159340;
+  transition: 300ms;
+  width: 80px;
+  height: 30px;
+}
+
+.joinButton:active {
+  transition: 300ms;
+  background-color: darkgreen;
+}
+
+.rejectButton {
+  border: none;
+  border-radius: 10px;
+  background-color: #DB1818;
+  transition: 300ms;
+  width: 80px;
+  height: 30px;
+}
+
+.rejectButton:active {
+  transition: 300ms;
+  background-color: darkred;
+}

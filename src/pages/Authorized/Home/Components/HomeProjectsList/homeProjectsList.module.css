@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  min-width: 300px;
+  width: 100%;
+  height: calc(100vh - 60px);
+}

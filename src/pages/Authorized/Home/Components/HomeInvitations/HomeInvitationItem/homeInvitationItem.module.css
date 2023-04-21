@@ -1,0 +1,62 @@
+.container {
+  width: calc(100% - 40px);
+  padding: 20px;
+  border: 2px solid #00B4D8;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.projectName {
+  font-size: 16pt;
+  font-weight: 600;
+}
+
+.secondaryText {
+  font-size: 12pt;
+  color: #B5B5B5;
+}
+
+.actionsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.joinButton {
+  border: none;
+  border-radius: 10px;
+  background-color: #159340;
+  transition: 300ms;
+  width: 80px;
+  height: 30px;
+  color: white;
+}
+
+.joinButton:active {
+  transition: 300ms;
+  background-color: darkgreen;
+}
+
+.rejectButton {
+  border: none;
+  border-radius: 10px;
+  background-color: #DB1818;
+  transition: 300ms;
+  width: 80px;
+  height: 30px;
+  color: white;
+}
+
+.rejectButton:active {
+  transition: 300ms;
+  background-color: darkred;
+}
