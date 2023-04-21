@@ -4,6 +4,7 @@ import LoginPage from './pages/Auth/Login/LoginPage';
 import RegisterPage from './pages/Auth/Register/RegisterPage';
 import HomePage from './pages/Authorized/Home/HomePage';
 import { homeRoute, loginRoute, registerRoute } from './values/routes';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 
 const Navigation = (): JSX.Element => {
   return (
@@ -11,9 +12,9 @@ const Navigation = (): JSX.Element => {
       <Routes>
         <Route path={loginRoute} element={<LoginPage />} />
         <Route path={registerRoute} element={<RegisterPage />} />
-      </Routes>
-      <Routes>
-        <Route path={homeRoute} element={<HomePage />} />
+        <Route element={<RequireAuth />}>
+          <Route path={homeRoute} element={<HomePage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
