@@ -9,7 +9,7 @@ interface Props {
 
 const AppModal: FC<Props> = ({ isOpen, children }) => {
   return (
-    <ReactModal isOpen={true} className={styles.content} ariaHideApp={false}>
+    <ReactModal isOpen={isOpen} className={styles.content} ariaHideApp={false}>
       {children}
     </ReactModal>
   );
