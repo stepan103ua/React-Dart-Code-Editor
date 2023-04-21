@@ -69,13 +69,12 @@ const HomePage = () => {
           <HomeProjectsList projects={projects} />
         </div>
       </div>
-      {isCreateProjectDialogOpen && (
-        <CreateProjectDialog
-          isOpen={isCreateProjectDialogOpen}
-          onCancel={handleCloseCreateProjectDialog}
-          onCreate={handleCreateProject}
-        />
-      )}
+
+      <CreateProjectDialog
+        isOpen={isCreateProjectDialogOpen}
+        onCancel={handleCloseCreateProjectDialog}
+        onCreate={handleCreateProject}
+      />
     </>
   );
 };
