@@ -1,0 +1,19 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100vh;
+  animation: appearing 200ms ease-in-out;
+}
+
+@keyframes appearing {
+  0% {
+    opacity: 0;
+  };
+
+  100% {
+    opacity: 1;
+  }
+}
