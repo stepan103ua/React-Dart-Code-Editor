@@ -7,11 +7,14 @@ import { Project } from '../../../models/project';
 import HomeProjectsList from './Components/HomeProjectsList/HomeProjectsList';
 import { Invite } from '../../../models/invite';
 import CreateProjectDialog from './Components/CreateProjectDialog/CreateProjectDialog';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const socket = useContext(RoomContext);
   const [projects, setProjects] = useState<Project[]>([]);
   const [invites, setInvites] = useState<Invite[]>([]);
+
+  const navigate = useNavigate();
 
   const [isCreateProjectDialogOpen, setCreateProjectDialogOpen] = useState(false);
 
@@ -57,6 +60,10 @@ const HomePage = () => {
     setCreateProjectDialogOpen(false);
   };
 
+  const handleProjectClick = (projectId: string) => {
+    navigate(`project/${projectId}`);
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -66,7 +73,7 @@ const HomePage = () => {
             onCreateProjectClicked={handleOpenCreateProjectDialog}
             invites={invites}
           />
-          <HomeProjectsList projects={projects} />
+          <HomeProjectsList projects={projects} onProjectClick={handleProjectClick} />
         </div>
       </div>
 

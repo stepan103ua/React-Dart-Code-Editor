@@ -3,11 +3,12 @@ import { Project } from '../../../../../../../models/project';
 import styles from './homeProjectsListItem.module.css';
 import CircleAvatar from '../../../../../Components/CircleAvatar/CircleAvatar';
 
-interface Props {
+export interface HomeProjectsListItemProps {
   project: Project;
+  onProjectClick: (id: string) => void;
 }
 
-const HomeProjectsListItem: FC<Props> = ({ project }) => {
+const HomeProjectsListItem: FC<HomeProjectsListItemProps> = ({ project, onProjectClick }) => {
   const formattedDate = new Intl.DateTimeFormat('en', {
     day: '2-digit',
     month: 'numeric',
@@ -16,8 +17,12 @@ const HomeProjectsListItem: FC<Props> = ({ project }) => {
 
   const formattedDateString = formattedDate.format(new Date(project.lastSaved));
 
+  const handleProjectClick = () => {
+    onProjectClick(project.id);
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={handleProjectClick}>
       <div className={styles.content}>
         <span className={styles.titleText}>{project.name}</span>
         <div>

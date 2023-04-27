@@ -5,16 +5,17 @@ import HomeProjectsListItem from './Components/HomeProjectsListItem/HomeProjects
 
 interface Props {
   projects: Project[];
+  onProjectClick: (id: string) => void;
 }
 
-const HomeProjectsList: FC<Props> = ({ projects }) => {
+const HomeProjectsList: FC<Props> = ({ projects, onProjectClick }) => {
   if (projects.length === 0) {
     return <div className={styles.container}>No projects found</div>;
   }
   return (
     <div className={styles.container}>
       {projects.map((e) => (
-        <HomeProjectsListItem key={e.id} project={e} />
+        <HomeProjectsListItem key={e.id} project={e} onProjectClick={onProjectClick} />
       ))}
     </div>
   );
