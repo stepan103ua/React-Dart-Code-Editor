@@ -1,0 +1,33 @@
+.container {
+  max-width: 100%;
+
+  padding: 20px 22px;
+  margin: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 2px solid #00B4D8;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  background-color: #00B4D8;
+
+  border-radius: 5px;
+}
+
+.button:hover {
+  cursor: pointer;
+} 

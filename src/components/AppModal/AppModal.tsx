@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import ReactModal from 'react-modal';
 import styles from './appModal.module.css';
 
-interface Props {
+export interface AppModalProps {
   isOpen: boolean;
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
-const AppModal: FC<Props> = ({ isOpen, children }) => {
+const AppModal: FC<AppModalProps> = ({ isOpen, children }) => {
   return (
     <ReactModal isOpen={isOpen} className={styles.content} ariaHideApp={false}>
       {children}

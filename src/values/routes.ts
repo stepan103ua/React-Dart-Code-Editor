@@ -4,4 +4,6 @@ const registerRoute = '/auth/register';
 
 const homeRoute = '/';
 
-export { loginRoute, registerRoute, homeRoute };
+const codeEditorRoute = '/project/:id';
+
+export { loginRoute, registerRoute, homeRoute, codeEditorRoute };

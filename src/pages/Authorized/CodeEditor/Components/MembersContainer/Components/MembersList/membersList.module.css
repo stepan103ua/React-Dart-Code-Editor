@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.memberContainer {
+  display: flex;
+  max-width: 100%;
+  margin: 0 20px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.memberInfoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.memberUsername {
+  font-size: 16pt;
+}
+
+.memberEmail {
+  font-size: 12pt;
+  color: #8D99AE;
+}
+
+.title {
+  font-size: 22pt;
+  font-weight: bold;
+  margin: 0 20px;
+  margin-bottom: 20px;
+}
