@@ -1,0 +1,59 @@
+.container {
+  position: absolute;
+  width: 100%;
+  font-size: 14px;
+  line-height: 25px;
+  margin: 0;
+  padding: 0px;
+  background-color: transparent;
+  color: transparent;
+  caret-color: white;
+  resize: none;
+  border: none;
+}
+
+.stack {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 0;
+  margin: 0;
+}
+
+.code {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  color: white;
+  padding: 0px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.keyword {
+  color: #B5179E;
+}
+
+.function {
+  color: #f6db8f;
+}
+
+.class {
+  color: #00A896;
+}
+
+.string {
+  color: #83C5BE;
+}
+
+.comment {
+  color: #75715e;
+}
+
+.baseWord {
+  color: white;
+}

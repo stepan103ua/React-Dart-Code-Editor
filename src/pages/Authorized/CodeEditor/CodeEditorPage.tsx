@@ -7,6 +7,7 @@ import MembersContainer from './Components/MembersContainer/MembersContainer';
 import NavBar from '../Components/NavBar/NavBar';
 import InviteMemberDialog from './Components/InviteMemberDialog/InviteMemberDialog';
 import { User } from '../../../models/user';
+import CodeEditor from './Components/CodeEditor/CodeEditor';
 
 const CodeEditorPage: FC = () => {
   const [showInviteMemberDialog, setInviteMemberDialog] = useState(false);
@@ -54,7 +55,11 @@ const CodeEditorPage: FC = () => {
   return (
     <div className={styles.container}>
       <NavBar />
-      <MembersContainer onInviteMember={handleInviteMemberClick} users={usersOnline} />
+      <div className={styles.content}>
+        <MembersContainer onInviteMember={handleInviteMemberClick} users={usersOnline} />
+        <CodeEditor />
+      </div>
+
       <InviteMemberDialog
         isOpen={showInviteMemberDialog}
         onCancel={handleCloseInviteMemberDialog}

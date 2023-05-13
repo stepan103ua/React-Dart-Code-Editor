@@ -1,0 +1,13 @@
+.container {
+  width: 40px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lineNumber {
+  color: #8D99AE;
+  font-size: 14px;
+  line-height: 25px;
+}
