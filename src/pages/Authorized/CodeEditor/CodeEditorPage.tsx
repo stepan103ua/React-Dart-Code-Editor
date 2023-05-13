@@ -57,7 +57,7 @@ const CodeEditorPage: FC = () => {
       <NavBar />
       <div className={styles.content}>
         <MembersContainer onInviteMember={handleInviteMemberClick} users={usersOnline} />
-        <CodeEditor />
+        <CodeEditor projectId={id ?? ''} />
       </div>
 
       <InviteMemberDialog

@@ -76,7 +76,9 @@ const CodeEditorField: FC<Props> = ({ linesCount, code, onChangeCode }) => {
         rows={linesCount}
         className={styles.container}
         value={code}
-        onChange={handleCodeChange}></textarea>
+        onChange={handleCodeChange}>
+        {code}
+      </textarea>
     </div>
   );
 };
