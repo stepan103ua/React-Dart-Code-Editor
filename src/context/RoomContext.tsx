@@ -1,6 +1,5 @@
 import io, { Socket } from 'socket.io-client';
 import { createContext, FC } from 'react';
-// import { useAppSelector } from '../hooks/redux';
 
 const ws = 'http://localhost:5000';
 
@@ -12,7 +11,6 @@ interface Props {
 
 const RoomProvider: FC<Props> = ({ children }) => {
   const token = localStorage.getItem('accessToken');
-  console.log(token);
   const socket = io(ws, {
     auth: { token }
   });

@@ -6,4 +6,6 @@ const homeRoute = '/';
 
 const codeEditorRoute = '/project/:id';
 
-export { loginRoute, registerRoute, homeRoute, codeEditorRoute };
+const guest = '/guest';
+
+export { loginRoute, registerRoute, homeRoute, codeEditorRoute, guest };
