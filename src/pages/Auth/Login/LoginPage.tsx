@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
 import Spacer from '../../../components/Spacer/Spacer';
 import TextInput from '../../../components/TextInput/TextInput';
-import { homeRoute, registerRoute } from '../../../values/routes';
+import { guest, homeRoute, registerRoute } from '../../../values/routes';
 import { validateEmail, validatePassword } from '../../../values/validation';
 import AuthForm from '../Components/AuthForm/AuthForm';
 import WelcomeContainer from '../Components/WelcomeContainer/WelcomeContainer';
@@ -75,7 +75,7 @@ const LoginPage = () => {
           console.log(response);
           const token = (response as AuthResponse).accessToken;
           dispatch(setCredentials({ token }));
-          navigate('/');
+          navigate(homeRoute);
         });
     } catch (error) {
       console.log(error);
@@ -87,7 +87,7 @@ const LoginPage = () => {
   };
 
   const handleContinueAsGuest = () => {
-    navigate(homeRoute);
+    navigate(guest);
   };
 
   const handleCloseErrorSnackbar = () => {

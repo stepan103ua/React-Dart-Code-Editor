@@ -9,9 +9,11 @@ import InviteMemberDialog from './Components/InviteMemberDialog/InviteMemberDial
 import { User } from '../../../models/user';
 import CodeEditor from './Components/CodeEditor/CodeEditor';
 import Snackbar from '../../../components/Snackbar/Snackbar';
+import { useAppSelector } from '../../../hooks/redux';
 
 const CodeEditorPage: FC = () => {
   const [showInviteMemberDialog, setInviteMemberDialog] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [usersOnline, setUsersOnline] = useState<User[]>([]);
   const [codeSavingMessage, setCodeSavingMessage] = useState<string | null>(null);
   const [code, setCode] = useState('');
@@ -20,12 +22,16 @@ const CodeEditorPage: FC = () => {
 
   console.log(id);
 
+  console.log(useAppSelector((store) => store.auth.token));
+
   const socket = useContext(RoomContext);
 
   useEffect(() => {
     socket?.emit('open-project', id);
 
-    socket?.on('receive-project-users', () => {});
+    socket?.on('project-no-access', (message) => {
+      setError(message);
+    });
 
     socket?.on('project-online-members-updated', (users: User[]) => {
       setUsersOnline(users);
@@ -36,13 +42,14 @@ const CodeEditorPage: FC = () => {
       setCodeSavingMessage(message);
     });
 
-    socket?.on(
-      'receive-project-code-updated',
-      (projectName: string | null, updatedCode: string) => {
-        setCode(updatedCode);
-        setProjectName(projectName ?? 'Failed to load project name');
-      }
-    );
+    socket?.on('receive-project-code-updated', (updatedCode: string) => {
+      setCode(updatedCode ?? '');
+    });
+
+    socket?.on('receive-project-loaded', (projectName: string | null, updatedCode: string) => {
+      setCode(updatedCode ?? '');
+      setProjectName(projectName ?? 'Failed to load project name');
+    });
 
     const handleUnload = () => {
       socket?.emit('disconnect-from-project', id);
@@ -81,10 +88,25 @@ const CodeEditorPage: FC = () => {
     socket?.emit('project-code-update', id ?? '', value);
   };
 
+  if (error !== null) {
+    return (
+      <div className={styles.container}>
+        <NavBar />
+        <div className={styles.center}>
+          <h1>{error}</h1>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       {codeSavingMessage != null ? (
-        <Snackbar text={codeSavingMessage} onClose={handleCloseCodeSavingSnackbar} />
+        <Snackbar
+          alignment="bottomRight"
+          text={codeSavingMessage}
+          onClose={handleCloseCodeSavingSnackbar}
+        />
       ) : (
         <></>
       )}
