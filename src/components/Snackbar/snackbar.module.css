@@ -1,24 +1,44 @@
 .container {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #00B4D8;
   width: 300px;
   border-radius: 5px;
-  animation: appearing 200ms ease-in-out;
+  bottom: 20px;
 }
 
-@keyframes appearing {
+.bottomLeft {
+  left: 20px;
+  animation: appearingLeft 200ms ease-in-out;
+}
+
+.bottomRight {
+  right: 20px;
+  animation: appearingRight 200ms ease-in-out;
+}
+
+
+@keyframes appearingLeft {
   0% {
     opacity: 0;
-    left: -20px;
+    left: 0px;
   }
   100% {
     opacity: 1;
     left: 20px;
+  }
+}
+
+@keyframes appearingRight {
+  0% {
+    opacity: 0;
+    right: 0px;
+  }
+  100% {
+    opacity: 1;
+    right: 20px;
   }
 }
 
